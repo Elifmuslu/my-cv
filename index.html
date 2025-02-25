@@ -567,6 +567,49 @@
             overflow: hidden;
         }
         
+        /* Müzik Oynatıcı Stilleri */
+        .music-player {
+            margin: 1.5rem auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .music-info {
+            color: #a0a0a0;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .music-link {
+            text-decoration: none;
+        }
+        
+        .music-toggle {
+            background: rgba(112, 0, 255, 0.15);
+            border: 1px solid var(--primary);
+            color: var(--text-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .music-toggle:hover {
+            background: rgba(112, 0, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .music-toggle i {
+            color: #ff0000;
+            font-size: 1.1rem;
+        }
+        
         .footer-content {
             position: relative;
             z-index: 1;
@@ -705,7 +748,7 @@
         <div class="hero-bg"></div>
         <div class="container">
             <div class="header-content">
-            <img src="profile.jpg" alt="Elif Muslu" class="profile-img">
+                <img src="profile.jpg" alt="Elif Muslu" class="profile-img">
                 <div class="profile-title">
                     <h1>ELİF MUSLU</h1>
                     <h2>IP Integration Engineer</h2>
@@ -956,6 +999,17 @@
         <div class="container">
             <div class="footer-content">
                 <p>© 2025 Elif Muslu. All rights reserved.</p>
+                
+                <!-- Müzik oynatıcı - YouTube linki -->
+                <div class="music-player">
+                    <p class="music-info">Site müziği: Alec Benjamin - Let Me Down Slowly</p>
+                    <a href="https://www.youtube.com/watch?v=50VNCymT-Cs" class="music-link" target="_blank">
+                        <button class="music-toggle">
+                            <i class="fab fa-youtube"></i> YouTube'da Dinle
+                        </button>
+                    </a>
+                </div>
+                
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/elif-m-a773b2145/" class="social-link" target="_blank">
                         <i class="fab fa-linkedin"></i>
@@ -1102,6 +1156,8 @@
                 }
             });
         });
+        // Sayfa JavaScript'i
+        // Eski müzik kontrolü kodunu kaldırıyoruz
     </script>
 </body>
 </html>
