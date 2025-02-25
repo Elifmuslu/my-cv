@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elif Muslu - IP Integration Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2ead65;
+            --secondary-color: #333;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --border-color: #dee2e6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--light-color);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .profile-title h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-item:hover {
+            color: var(--primary-color);
+        }
+        
+        .contact-item i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Main Content Styles */
+        main {
+            padding: 3rem 0;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        /* About Section */
+        .about-content {
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+        
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 2rem;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .company-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .job-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .job-duration {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .job-description ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        
+        .job-description li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .skill-item {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1 0 30%;
+            min-width: 200px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Education Section */
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .institution {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .degree {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .education-duration {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .education-details {
+            font-size: 1rem;
+        }
+        
+        /* Projects Section */
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .project-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1 0 45%;
+            min-width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-description {
+            text-align: justify;
+        }
+        
+        /* Courses Section */
+        .courses-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .course-item {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Languages and Hobbies Section */
+        .languages-hobbies-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .languages-container, .hobbies-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .language-item, .hobby-item {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-item:before, .hobby-item:before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        /* References Section */
+        .references-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .reference-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .reference-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reference-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .reference-title {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .reference-contact {
+            margin-top: 0.5rem;
+        }
+        
+        .reference-contact a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .reference-contact a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .profile-title h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-title h2 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .experience-header, .education-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .skill-item, .project-item {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <img src="/api/placeholder/180/180" alt="Elif Muslu" class="profile-img">
+                <div class="profile-title">
+                    <h1>ELİF MUSLU</h1>
+                    <h2>IP Integration Engineer</h2>
+                </div>
+                <div class="contact-info">
+                    <a href="tel:+905358387321" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        +90 535 *** ** 21
+                    </a>
+                    <a href="mailto:elif.muslu97@hotmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        elif.muslu97@hotmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/elif-m-a773b2145/" class="contact-item" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="section" id="about">
+            <h2 class="section-title">PROFILE</h2>
+            <div class="about-content">
+                <p>As an NPI Engineer at NOKIA, I possess deep expertise in IP/MPLS and a strong technical background. By keeping up with the latest innovations in technology and telecommunications, I aim to offer cutting-edge solutions in the industry. With a passion for innovation and a commitment to excellence, I am dedicated to driving continuous improvements and streamlining integration, testing, and validation procedures for maximum efficiency and customer satisfaction. My vision for the future is built on continuous learning and pioneering projects to push the boundaries of technology.</p>
+            </div>
+        </section>
+        
+        <section class="section" id="experience">
+            <h2 class="section-title">WORK EXPERIENCE</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company-title">Nokia</div>
+                        <div class="job-title">NPI Engineer</div>
+                    </div>
+                    <div class="job-duration">January 2023 - Present</div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Providing technical support for Turk Telekom IP/MPLS.</li>
+                        <li>Commissioning, configuring, upgrading, and troubleshooting Nokia IP/MPLS products (7950 XRS, 7750 SR/SR-s series, 7450 ESS series, 7210 series, 6450 Omni Switches and IPTV services).</li>
+                        <li>Serving as the first escalation point for hardware and software issues of customers.</li>
+                        <li>Collaborating closely with IP technical support teams.</li>
+                        <li>Administering, upgrading, installing, and providing technical support for Turk Telekom NMS (Network Management System)/Network Function Manager – Packet (NFM-P).</li>
+                        <li>Being responsible for IP/MPLS network management for Istanbul/Kayseri Region (Istanbul, Edirne, Tekirdağ, Kırklareli, Kocaeli, Sakarya, Kayseri, Malatya, Sivas, Aksaray, Kırşehir, Nevşehir, Yozgat).</li>
+                        <li>Providing 7/24 technical support to corporate customers.</li>
+                        <li>Errors, SAM 5620 (FCS, CRC, XPL etc.)</li>
+                        <li>Preparation of technical documents for the team</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="expertise">
+            <h2 class="section-title">EXPERTISE</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-title">Testing and Validation</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Technical Support</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Routing Protocols</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Python, Linux Automation</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Network Design, Integration</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">MPLS/ISIS/BGP</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Hardware and Software Knowledge</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Agile Methodology</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="education">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="institution">Aydın Adnan Menderes University</div>
+                    <div class="education-duration">2015 - 2020</div>
+                </div>
+                <div class="degree">Bachelor of Science - Computer Engineering</div>
+                <div class="education-details">GPA: 3.7/4</div>
+            </div>
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="institution">Ege University</div>
+                    <div class="education-duration">2020 - 2022</div>
+                </div>
+                <div class="degree">Master of Science - Computer Engineering</div>
+                <div class="education-details">GPA: 3.84/4</div>
+            </div>
+        </section>
+        
+        <section class="section" id="projects">
+            <h2 class="section-title">PROJECTS</h2>
+            <div class="projects-container">
+                <div class="project-item">
+                    <div class="project-title">Turk Telekom IP MPLS</div>
+                    <div class="project-description">
+                        <p>Working on IP/MPLS network infrastructure for Turk Telekom, implementing advanced routing protocols and ensuring network stability and performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="courses">
+            <h2 class="section-title">COURSES</h2>
+            <ul class="courses-list">
+                <li class="course-item">Nokia IS-IS Routing Protocol</li>
+                <li class="course-item">Nokia Border Gateway Protocol Fundamentals for Services</li>
+                <li class="course-item">Nokia Network Routing Specialist 1 (NRS1)</li>
+                <li class="course-item">Fundamentals of Red Hat Enterprise Linux</li>
+                <li class="course-item">Cisco Introduction to Wireless Network</li>
+                <li class="course-item">GTech Data Warehouse and Business Intelligence Academy</li>
+                <li class="course-item">RPA Introduction Training</li>
+                <li class="course-item">Python 101, 201, 301</li>
+                <li class="course-item">Basic Network Security</li>
+            </ul>
+        </section>
+        
+        <section class="section" id="languages-hobbies">
+            <div class="languages-hobbies-container">
+                <div class="languages-container">
+                    <h2 class="section-title">LANGUAGES</h2>
+                    <div class="language-item">English</div>
+                    <div class="language-item">Turkish</div>
+                </div>
+                <div class="hobbies-container">
+                    <h2 class="section-title">HOBBIES</h2>
+                    <div class="hobby-item">Travel</div>
+                    <div class="hobby-item">Making a puzzle</div>
+                    <div class="hobby-item">Watching foreign TV series</div>
+                    <div class="hobby-item">Reading book</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="references">
+            <h2 class="section-title">REFERENCES</h2>
+            <div class="references-container">
+                <div class="reference-item">
+                    <div class="reference-name">Zekeriya Muslu</div>
+                    <div class="reference-title">Ericsson, Senior Solution Architect</div>
+                    <div class="reference-contact">
+                        <p>Tel: +90 549 *** ** 85</p>
+                        <p>Email: <a href="mailto:zekeriya.muslu@ericsson.com">zekeriya.muslu@ericsson.com</a></p>
+                    </div>
+                </div>
+                <div class="reference-item">
+                    <div class="reference-name">Prof. Dr. Gülçin M. Muslu</div>
+                    <div class="reference-title">Istanbul Technical University, Department of Mathematics</div>
+                    <div class="reference-contact">
+                        <p>Tel: +90 212 *** **57</p>
+                        <p>Email: <a href="mailto:gulcin@itu.edu.tr">gulcin@itu.edu.tr</a></p>
+                    </div>
+                </div>
+                <div class="reference-item">
+                    <div class="reference-name">İslam Balkaya</div>
+                    <div class="reference-title">Nokia, NPI & Customer Engineer</div>
+                    <div class="reference-contact">
+                        <p>Tel: +90 0535 *** ** 91</p>
+                        <p>Email: <a href="mailto:islam.balkaya@nokia.com">islam.balkaya@nokia.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Elif Muslu. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/elif-m-a773b2145/" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:elif.muslu97@hotmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
