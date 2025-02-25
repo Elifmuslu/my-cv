@@ -848,7 +848,7 @@
                             <p>GPA: 3.84/4</p>
                             <p class="thesis-info"><strong>Thesis:</strong> "Psikiyatrik hastalıkların tanısı için ontoloji tabanlı bir bilgi sisteminin geliştirilmesi / Development of an ontology-based information system for the diagnosis of psychiatric diseases"</p>
                             <p><strong>Pages:</strong> 121</p>
-                            <p><strong>Department:</strong> Computer Engineering and Computer Science and Control</p>
+                            <p><strong>Department:</strong> Computer Engineering and Computer Science</p>
                         </div>
                     </div>
                 </div>
@@ -1091,8 +1091,12 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const headerOffset = 100; // Daha büyük bir offset değeri
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 70,
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
                 }
