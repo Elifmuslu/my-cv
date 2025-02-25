@@ -5,86 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elif Muslu - IP Integration Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
+        /* Base Styles */
         :root {
-            --primary-color: #2ead65;
-            --primary-dark: #25964f;
-            --secondary-color: #333;
-            --text-color: #e0e0e0;
-            --dark-bg: #121212;
-            --card-bg: #1e1e1e;
-            --card-hover-bg: #2a2a2a;
-            --border-color: #333;
-            --section-bg: #1a1a1a;
+            --background: #000000;
+            --foreground: #ffffff;
+            --primary: #7000FF;
+            --primary-foreground: #ffffff;
+            --border: #333333;
+            --input: #222222;
+            --ring: #8b5cf6;
+            --radius: 0.5rem;
+            --primary-glow: rgba(112, 0, 255, 0.3);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: system-ui, sans-serif;
+        }
+        
+        html {
             scroll-behavior: smooth;
         }
         
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-color);
+            background-color: var(--background);
+            color: var(--foreground);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
         }
         
-        /* Scrollbar Styles */
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         
         ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
+            background: #111;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
+            background: var(--primary);
+            border-radius: 5px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
+            background: #5c00d2;
         }
         
-        /* Header Styles */
+        /* Text Styles */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        p, ul, ol {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--foreground);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary);
+        }
+        
+        /* Header */
         header {
-            background-color: rgba(18, 18, 18, 0.95);
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 120px 0 80px;
             position: relative;
             overflow: hidden;
         }
         
-        header::before {
-            content: '';
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(46, 173, 101, 0.1) 0%, rgba(46, 173, 101, 0) 50%);
             z-index: 0;
+            background: radial-gradient(circle at 50% 50%, var(--primary-glow), transparent 50%);
+            opacity: 0.4;
         }
         
-        .profile {
+        .header-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            text-align: center;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
         
         .profile-img {
@@ -92,29 +115,28 @@
             height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid var(--primary-color);
-            box-shadow: 0 0 20px rgba(46, 173, 101, 0.3);
-            margin-bottom: 1.5rem;
-            transition: transform 0.5s, box-shadow 0.5s;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 25px var(--primary-glow);
+            margin-bottom: 2rem;
+            position: relative;
         }
         
-        .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(46, 173, 101, 0.5);
+        .profile-title {
+            margin-bottom: 2rem;
         }
         
         .profile-title h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            color: white;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            letter-spacing: 1px;
+            background: linear-gradient(to right, #fff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
         }
         
         .profile-title h2 {
             font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            color: #a0a0a0;
             font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -124,147 +146,238 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 1rem;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
             background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
         
         .contact-item:hover {
-            color: white;
-            background: var(--primary-color);
+            background: rgba(112, 0, 255, 0.15);
+            border-color: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(46, 173, 101, 0.3);
         }
         
         .contact-item i {
             margin-right: 0.5rem;
-            font-size: 1.2rem;
+            color: var(--primary);
         }
         
-        /* Navigation */
-        .nav-container {
-            background: rgba(18, 18, 18, 0.95);
+        /* Navbar */
+        .navbar-container {
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 0;
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
         
         .navbar {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            padding: 0.5rem 0;
+            padding: 1rem 0;
         }
         
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
+        .nav-list {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-item a {
+            display: block;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
         }
         
-        .nav-link:hover {
-            color: white;
-            background: var(--primary-color);
+        .nav-item a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            border-radius: var(--radius);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+            opacity: 0.1;
         }
         
-        /* Main Content Styles */
+        .nav-item a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-item a:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .nav-item a.active {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+        
+        .nav-item a.active:hover {
+            color: var(--primary-foreground);
+        }
+        
+        /* Main Content */
         main {
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
         
         .section {
-            margin-bottom: 4rem;
-            padding: 2rem;
-            border-radius: 10px;
-            background: var(--section-bg);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
         }
         
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        .section-blur {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.15;
+            filter: blur(40px);
+            z-index: 0;
+        }
+        
+        .section-blur-1 {
+            top: 10%;
+            left: -5%;
+        }
+        
+        .section-blur-2 {
+            bottom: 20%;
+            right: -5%;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            margin-bottom: 3rem;
+            position: relative;
         }
         
         .section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary-color);
+            font-size: 2.5rem;
             display: inline-block;
+            position: relative;
+            margin-bottom: 1rem;
         }
         
-        /* About Section */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Profile Section */
         .about-content {
-            text-align: justify;
             font-size: 1.1rem;
             line-height: 1.8;
+            color: #c0c0c0;
         }
         
         /* Experience Section */
-        .experience-item {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .experience-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .experience-grid {
+            display: grid;
+            gap: 1.5rem;
         }
         
         .experience-header {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
         
         .company-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 600;
+            margin-bottom: 0.3rem;
             color: #fff;
         }
         
         .job-title {
             font-size: 1.1rem;
-            color: var(--primary-color);
-            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
         }
         
         .job-duration {
-            font-size: 1rem;
-            color: #999;
-            background: rgba(46, 173, 101, 0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
             display: inline-block;
-            margin-top: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(112, 0, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #c0c0c0;
         }
         
         .job-description ul {
-            list-style-type: none;
-            padding-left: 0.5rem;
+            list-style: none;
+            padding-left: 0;
         }
         
         .job-description li {
@@ -273,232 +386,139 @@
             padding-left: 1.5rem;
         }
         
-        .job-description li:before {
+        .job-description li::before {
             content: "▹";
             position: absolute;
             left: 0;
-            color: var(--primary-color);
+            color: var(--primary);
         }
         
         /* Skills Section */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
         }
         
-        .skill-item {
-            background-color: var(--card-bg);
-            padding: 1.2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            flex: 1 0 calc(33.333% - 1.5rem);
-            min-width: 200px;
+        .skill-card {
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary-color);
-            transition: width 0.3s;
-        }
-        
-        .skill-item:hover {
+        .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            background: var(--card-hover-bg);
-        }
-        
-        .skill-item:hover::before {
-            width: 100%;
-            opacity: 0.1;
+            background: rgba(112, 0, 255, 0.1);
+            border-color: var(--primary);
         }
         
         .skill-title {
+            font-size: 1.2rem;
             font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
         }
         
         /* Education Section */
-        .education-item {
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border-radius: 8px;
-            transition: all 0.3s;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .education-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .education-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .institution {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #fff;
+        .education-grid {
+            display: grid;
+            gap: 1.5rem;
         }
         
         .degree {
             font-size: 1.1rem;
-            color: var(--primary-color);
+            color: var(--primary);
             margin: 0.5rem 0;
         }
         
-        .education-duration {
-            font-size: 1rem;
-            color: #999;
-            background: rgba(46, 173, 101, 0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-        
         .education-details {
-            font-size: 1rem;
-            color: #aaa;
+            color: #a0a0a0;
         }
         
         /* Projects Section */
-        .projects-container {
-            display: flex;
-            flex-wrap: wrap;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
         
-        .project-item {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            flex: 1 0 45%;
-            min-width: 300px;
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary-color);
-        }
-        
-        .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            background: var(--card-hover-bg);
-        }
-        
         .project-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        
-        .project-description {
-            text-align: justify;
-            color: #ccc;
+            color: var(--primary);
         }
         
         /* Courses Section */
-        .courses-list {
-            list-style-type: none;
+        .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1rem;
         }
         
-        .course-item {
-            background-color: var(--card-bg);
+        .course-card {
             padding: 1.2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            border-left: 4px solid transparent;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
         
-        .course-item:hover {
+        .course-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            border-left: 4px solid var(--primary-color);
-            background: var(--card-hover-bg);
+            background: rgba(112, 0, 255, 0.1);
+            border-color: var(--primary);
         }
         
-        /* Languages and Hobbies Section */
-        .languages-hobbies-container {
-            display: flex;
+        /* Languages & Hobbies Section */
+        .langs-hobbies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            flex-wrap: wrap;
         }
         
-        .languages-container, .hobbies-container {
-            flex: 1;
-            min-width: 300px;
+        .langs-grid, .hobbies-grid {
+            display: grid;
+            gap: 1rem;
         }
         
-        .language-item, .hobby-item {
-            margin-bottom: 1rem;
+        .lang-card, .hobby-card {
+            padding: 1rem;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         
-        .language-item:hover, .hobby-item:hover {
-            transform: translateX(5px);
-            background: var(--card-hover-bg);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .language-item:before, .hobby-item:before {
+        .lang-card:before, .hobby-card:before {
             content: "";
             display: inline-block;
             width: 8px;
             height: 8px;
-            background-color: var(--primary-color);
+            background: var(--primary);
             border-radius: 50%;
-            margin-right: 0.8rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .lang-card:hover, .hobby-card:hover {
+            transform: translateX(5px);
+            background: rgba(112, 0, 255, 0.1);
+            border-color: var(--primary);
         }
         
         /* References Section */
-        .references-container {
+        .references-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
-        }
-        
-        .reference-item {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary-color);
-        }
-        
-        .reference-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            background: var(--card-hover-bg);
         }
         
         .reference-name {
@@ -510,45 +530,82 @@
         
         .reference-title {
             font-size: 1rem;
-            color: var(--primary-color);
+            color: var(--primary);
             margin-bottom: 0.8rem;
         }
         
         .reference-contact {
-            margin-top: 0.8rem;
-            color: #aaa;
+            color: #a0a0a0;
         }
         
         .reference-contact a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s;
+            color: #c0c0c0;
+            transition: color 0.3s ease;
         }
         
         .reference-contact a:hover {
-            color: var(--primary-color);
+            color: var(--primary);
         }
         
-        /* Back to Top Button */
+        /* Footer */
+        footer {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0a0a0;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(112, 0, 255, 0.15);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
         .back-to-top {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
+            bottom: 2rem;
+            right: 2rem;
             width: 50px;
             height: 50px;
             border-radius: 50%;
+            background: var(--primary);
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2rem;
-            text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(112, 0, 255, 0.3);
             opacity: 0;
+            transition: all 0.3s ease;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 100;
         }
         
         .back-to-top.visible {
@@ -557,128 +614,86 @@
         }
         
         .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(112, 0, 255, 0.5);
         }
         
-        /* Footer Styles */
-        footer {
-            background-color: #0a0a0a;
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            position: relative;
+        /* Sparkle Effect */
+        .sparkle-container {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
             overflow: hidden;
         }
         
-        footer::before {
-            content: '';
+        .sparkle {
             position: absolute;
+            background: white;
+            border-radius: 50%;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(46, 173, 101, 0.05) 0%, rgba(46, 173, 101, 0) 70%);
-            z-index: 0;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
         }
         
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-content p {
-            margin-bottom: 1rem;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-link {
-            color: #aaa;
-            font-size: 1.5rem;
-            transition: all 0.3s;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-        }
-        
-        .social-link:hover {
-            color: white;
-            background: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(46, 173, 101, 0.3);
-        }
-        
-        /* Animation Effects */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive Styles */
-        @media screen and (max-width: 768px) {
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .profile-title h1 {
-                font-size: 2rem;
-            }
-            
-            .profile-title h2 {
-                font-size: 1.2rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 0.8rem;
-                align-items: center;
+                font-size: 2.5rem;
             }
             
             .section-title {
-                font-size: 1.5rem;
+                font-size: 2rem;
+            }
+            
+            .skills-grid, .projects-grid, .courses-grid, .references-grid {
+                grid-template-columns: 1fr;
             }
             
             .experience-header, .education-header {
                 flex-direction: column;
-                gap: 0.5rem;
             }
             
-            .skill-item, .project-item {
-                flex: 1 0 100%;
+            .job-duration, .education-duration {
+                margin-top: 0.5rem;
             }
             
-            .navbar {
-                flex-wrap: wrap;
-                justify-content: center;
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .nav-link {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
+            .nav-list {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                justify-content: flex-start;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            
+            .nav-list::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .nav-item a {
+                white-space: nowrap;
             }
         }
     </style>
 </head>
 <body>
+    <div class="sparkle-container" id="sparkleContainer"></div>
+    
     <header>
+        <div class="hero-bg"></div>
         <div class="container">
-            <div class="profile" data-aos="fade-down">
+            <div class="header-content">
                 <img src="/api/placeholder/180/180" alt="Elif Muslu" class="profile-img">
                 <div class="profile-title">
                     <h1>ELİF MUSLU</h1>
@@ -702,222 +717,338 @@
         </div>
     </header>
     
-    <div class="nav-container">
+    <div class="navbar-container">
         <div class="container">
             <nav class="navbar">
-                <a href="#about" class="nav-link">Profil</a>
-                <a href="#experience" class="nav-link">Deneyim</a>
-                <a href="#expertise" class="nav-link">Uzmanlık</a>
-                <a href="#education" class="nav-link">Eğitim</a>
-                <a href="#projects" class="nav-link">Projeler</a>
-                <a href="#courses" class="nav-link">Kurslar</a>
-                <a href="#references" class="nav-link">Referanslar</a>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#about">Profile</a></li>
+                    <li class="nav-item"><a href="#experience">Experience</a></li>
+                    <li class="nav-item"><a href="#expertise">Expertise</a></li>
+                    <li class="nav-item"><a href="#education">Education</a></li>
+                    <li class="nav-item"><a href="#projects">Projects</a></li>
+                    <li class="nav-item"><a href="#courses">Courses</a></li>
+                    <li class="nav-item"><a href="#languages">Languages</a></li>
+                    <li class="nav-item"><a href="#references">References</a></li>
+                </ul>
             </nav>
         </div>
     </div>
     
-    <main class="container">
-        <section class="section" id="about" data-aos="fade-up">
-            <h2 class="section-title">PROFILE</h2>
-            <div class="about-content">
-                <p>As an NPI Engineer at NOKIA, I possess deep expertise in IP/MPLS and a strong technical background. By keeping up with the latest innovations in technology and telecommunications, I aim to offer cutting-edge solutions in the industry. With a passion for innovation and a commitment to excellence, I am dedicated to driving continuous improvements and streamlining integration, testing, and validation procedures for maximum efficiency and customer satisfaction. My vision for the future is built on continuous learning and pioneering projects to push the boundaries of technology.</p>
-            </div>
-        </section>
-        
-        <section class="section" id="experience" data-aos="fade-up">
-            <h2 class="section-title">WORK EXPERIENCE</h2>
-            <div class="experience-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="experience-header">
+    <main>
+        <div class="container">
+            <section id="about" class="section">
+                <div class="section-blur section-blur-1"></div>
+                <div class="section-header">
+                    <h2 class="section-title">Profile</h2>
+                </div>
+                <div class="about-content">
+                    <p>As an NPI Engineer at NOKIA, I possess deep expertise in IP/MPLS and a strong technical background. By keeping up with the latest innovations in technology and telecommunications, I aim to offer cutting-edge solutions in the industry. With a passion for innovation and a commitment to excellence, I am dedicated to driving continuous improvements and streamlining integration, testing, and validation procedures for maximum efficiency and customer satisfaction. My vision for the future is built on continuous learning and pioneering projects to push the boundaries of technology.</p>
+                </div>
+            </section>
+            
+            <section id="experience" class="section">
+                <div class="section-blur section-blur-2"></div>
+                <div class="section-header">
+                    <h2 class="section-title">Work Experience</h2>
+                </div>
+                <div class="experience-grid">
+                    <div class="card">
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-title">Nokia</div>
+                                <div class="job-title">NPI Engineer</div>
+                            </div>
+                            <div class="job-duration">January 2023 - Present</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Providing technical support for Turk Telekom IP/MPLS.</li>
+                                <li>Commissioning, configuring, upgrading, and troubleshooting Nokia IP/MPLS products (7950 XRS, 7750 SR/SR-s series, 7450 ESS series, 7210 series, 6450 Omni Switches and IPTV services).</li>
+                                <li>Serving as the first escalation point for hardware and software issues of customers.</li>
+                                <li>Collaborating closely with IP technical support teams.</li>
+                                <li>Administering, upgrading, installing, and providing technical support for Turk Telekom NMS (Network Management System)/Network Function Manager – Packet (NFM-P).</li>
+                                <li>Being responsible for IP/MPLS network management for Istanbul/Kayseri Region (Istanbul, Edirne, Tekirdağ, Kırklareli, Kocaeli, Sakarya, Kayseri, Malatya, Sivas, Aksaray, Kırşehir, Nevşehir, Yozgat).</li>
+                                <li>Providing 7/24 technical support to corporate customers.</li>
+                                <li>Errors, SAM 5620 (FCS, CRC, XPL etc.)</li>
+                                <li>Preparation of technical documents for the team</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="expertise" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Expertise</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-title">Testing and Validation</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Technical Support</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Routing Protocols</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Python, Linux Automation</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Network Design, Integration</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">MPLS/ISIS/BGP</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Hardware and Software Knowledge</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Agile Methodology</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="education" class="section">
+                <div class="section-blur section-blur-1"></div>
+                <div class="section-header">
+                    <h2 class="section-title">Education</h2>
+                </div>
+                <div class="education-grid">
+                    <div class="card">
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-title">Aydın Adnan Menderes University</div>
+                                <div class="degree">Bachelor of Science - Computer Engineering</div>
+                            </div>
+                            <div class="job-duration">2015 - 2020</div>
+                        </div>
+                        <div class="education-details">GPA: 3.7/4</div>
+                    </div>
+                    <div class="card">
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-title">Ege University</div>
+                                <div class="degree">Master of Science - Computer Engineering</div>
+                            </div>
+                            <div class="job-duration">2020 - 2022</div>
+                        </div>
+                        <div class="education-details">GPA: 3.84/4</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="projects" class="section">
+                <div class="section-blur section-blur-2"></div>
+                <div class="section-header">
+                    <h2 class="section-title">Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <div class="card">
+                        <div class="project-title">Turk Telekom IP MPLS</div>
+                        <div class="project-description">
+                            <p>Working on IP/MPLS network infrastructure for Turk Telekom, implementing advanced routing protocols and ensuring network stability and performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="courses" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Courses</h2>
+                </div>
+                <div class="courses-grid">
+                    <div class="course-card">Nokia IS-IS Routing Protocol</div>
+                    <div class="course-card">Nokia Border Gateway Protocol Fundamentals for Services</div>
+                    <div class="course-card">Nokia Network Routing Specialist 1 (NRS1)</div>
+                    <div class="course-card">Fundamentals of Red Hat Enterprise Linux</div>
+                    <div class="course-card">Cisco Introduction to Wireless Network</div>
+                    <div class="course-card">GTech Data Warehouse and Business Intelligence Academy</div>
+                    <div class="course-card">RPA Introduction Training</div>
+                    <div class="course-card">Python 101, 201, 301</div>
+                    <div class="course-card">Basic Network Security</div>
+                </div>
+            </section>
+            
+            <section id="languages" class="section">
+                <div class="section-blur section-blur-1"></div>
+                <div class="langs-hobbies-container">
                     <div>
-                        <div class="company-title">Nokia</div>
-                        <div class="job-title">NPI Engineer</div>
+                        <div class="section-header">
+                            <h2 class="section-title">Languages</h2>
+                        </div>
+                        <div class="langs-grid">
+                            <div class="lang-card">English</div>
+                            <div class="lang-card">Turkish</div>
+                        </div>
                     </div>
-                    <div class="job-duration">January 2023 - Present</div>
-                </div>
-                <div class="job-description">
-                    <ul>
-                        <li>Providing technical support for Turk Telekom IP/MPLS.</li>
-                        <li>Commissioning, configuring, upgrading, and troubleshooting Nokia IP/MPLS products (7950 XRS, 7750 SR/SR-s series, 7450 ESS series, 7210 series, 6450 Omni Switches and IPTV services).</li>
-                        <li>Serving as the first escalation point for hardware and software issues of customers.</li>
-                        <li>Collaborating closely with IP technical support teams.</li>
-                        <li>Administering, upgrading, installing, and providing technical support for Turk Telekom NMS (Network Management System)/Network Function Manager – Packet (NFM-P).</li>
-                        <li>Being responsible for IP/MPLS network management for Istanbul/Kayseri Region (Istanbul, Edirne, Tekirdağ, Kırklareli, Kocaeli, Sakarya, Kayseri, Malatya, Sivas, Aksaray, Kırşehir, Nevşehir, Yozgat).</li>
-                        <li>Providing 7/24 technical support to corporate customers.</li>
-                        <li>Errors, SAM 5620 (FCS, CRC, XPL etc.)</li>
-                        <li>Preparation of technical documents for the team</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section" id="expertise" data-aos="fade-up">
-            <h2 class="section-title">EXPERTISE</h2>
-            <div class="skills-container">
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="skill-title">Testing and Validation</div>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="skill-title">Technical Support</div>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="skill-title">Routing Protocols</div>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="skill-title">Python, Linux Automation</div>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="skill-title">Network Design, Integration</div>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="350">
-                    <div class="skill-title">MPLS/ISIS/BGP</div>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="skill-title">Hardware and Software Knowledge</div>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="450">
-                    <div class="skill-title">Agile Methodology</div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section" id="education" data-aos="fade-up">
-            <h2 class="section-title">EDUCATION</h2>
-            <div class="education-item" data-aos="fade-right" data-aos-delay="100">
-                <div class="education-header">
-                    <div class="institution">Aydın Adnan Menderes University</div>
-                    <div class="education-duration">2015 - 2020</div>
-                </div>
-                <div class="degree">Bachelor of Science - Computer Engineering</div>
-                <div class="education-details">GPA: 3.7/4</div>
-            </div>
-            <div class="education-item" data-aos="fade-right" data-aos-delay="200">
-                <div class="education-header">
-                    <div class="institution">Ege University</div>
-                    <div class="education-duration">2020 - 2022</div>
-                </div>
-                <div class="degree">Master of Science - Computer Engineering</div>
-                <div class="education-details">GPA: 3.84/4</div>
-            </div>
-        </section>
-        
-        <section class="section" id="projects" data-aos="fade-up">
-            <h2 class="section-title">PROJECTS</h2>
-            <div class="projects-container">
-                <div class="project-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-title">Turk Telekom IP MPLS</div>
-                    <div class="project-description">
-                        <p>Working on IP/MPLS network infrastructure for Turk Telekom, implementing advanced routing protocols and ensuring network stability and performance.</p>
+                    
+                    <div>
+                        <div class="section-header">
+                            <h2 class="section-title">Hobbies</h2>
+                        </div>
+                        <div class="hobbies-grid">
+                            <div class="hobby-card">Travel</div>
+                            <div class="hobby-card">Making a puzzle</div>
+                            <div class="hobby-card">Watching foreign TV series</div>
+                            <div class="hobby-card">Reading book</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <section class="section" id="courses" data-aos="fade-up">
-            <h2 class="section-title">COURSES</h2>
-            <ul class="courses-list">
-                <li class="course-item" data-aos="fade-up" data-aos-delay="100">Nokia IS-IS Routing Protocol</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="150">Nokia Border Gateway Protocol Fundamentals for Services</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="200">Nokia Network Routing Specialist 1 (NRS1)</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="250">Fundamentals of Red Hat Enterprise Linux</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="300">Cisco Introduction to Wireless Network</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="350">GTech Data Warehouse and Business Intelligence Academy</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="400">RPA Introduction Training</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="450">Python 101, 201, 301</li>
-                <li class="course-item" data-aos="fade-up" data-aos-delay="500">Basic Network Security</li>
-            </ul>
-        </section>
-        
-        <section class="section" id="languages-hobbies" data-aos="fade-up">
-            <div class="languages-hobbies-container">
-                <div class="languages-container">
-                    <h2 class="section-title">LANGUAGES</h2>
-                    <div class="language-item" data-aos="fade-right" data-aos-delay="100">English</div>
-                    <div class="language-item" data-aos="fade-right" data-aos-delay="150">Turkish</div>
+            </section>
+            
+            <section id="references" class="section">
+                <div class="section-blur section-blur-2"></div>
+                <div class="section-header">
+                    <h2 class="section-title">References</h2>
                 </div>
-                <div class="hobbies-container">
-                    <h2 class="section-title">HOBBIES</h2>
-                    <div class="hobby-item" data-aos="fade-left" data-aos-delay="100">Travel</div>
-                    <div class="hobby-item" data-aos="fade-left" data-aos-delay="150">Making a puzzle</div>
-                    <div class="hobby-item" data-aos="fade-left" data-aos-delay="200">Watching foreign TV series</div>
-                    <div class="hobby-item" data-aos="fade-left" data-aos-delay="250">Reading book</div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section" id="references" data-aos="fade-up">
-            <h2 class="section-title">REFERENCES</h2>
-            <div class="references-container">
-                <div class="reference-item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="reference-name">Zekeriya Muslu</div>
-                    <div class="reference-title">Ericsson, Senior Solution Architect</div>
-                    <div class="reference-contact">
-                        <p>Tel: +90 549 *** ** 85</p>
-                        <p>Email: <a href="mailto:zekeriya.muslu@ericsson.com">zekeriya.muslu@ericsson.com</a></p>
+                <div class="references-grid">
+                    <div class="card">
+                        <div class="reference-name">Zekeriya Muslu</div>
+                        <div class="reference-title">Ericsson, Senior Solution Architect</div>
+                        <div class="reference-contact">
+                            <p>Tel: +90 549 *** ** 85</p>
+                            <p>Email: <a href="mailto:zekeriya.muslu@ericsson.com">zekeriya.muslu@ericsson.com</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="reference-name">Prof. Dr. Gülçin M. Muslu</div>
+                        <div class="reference-title">Istanbul Technical University, Department of Mathematics</div>
+                        <div class="reference-contact">
+                            <p>Tel: +90 212 *** **57</p>
+                            <p>Email: <a href="mailto:gulcin@itu.edu.tr">gulcin@itu.edu.tr</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="reference-name">İslam Balkaya</div>
+                        <div class="reference-title">Nokia, NPI & Customer Engineer</div>
+                        <div class="reference-contact">
+                            <p>Tel: +90 0535 *** ** 91</p>
+                            <p>Email: <a href="mailto:islam.balkaya@nokia.com">islam.balkaya@nokia.com</a></p>
+                        </div>
                     </div>
                 </div>
-                <div class="reference-item" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="reference-name">Prof. Dr. Gülçin M. Muslu</div>
-                    <div class="reference-title">Istanbul Technical University, Department of Mathematics</div>
-                    <div class="reference-contact">
-                        <p>Tel: +90 212 *** **57</p>
-                        <p>Email: <a href="mailto:gulcin@itu.edu.tr">gulcin@itu.edu.tr</a></p>
-                    </div>
-                </div>
-                <div class="reference-item" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="reference-name">İslam Balkaya</div>
-                    <div class="reference-title">Nokia, NPI & Customer Engineer</div>
-                    <div class="reference-contact">
-                        <p>Tel: +90 0535 *** ** 91</p>
-                        <p>Email: <a href="mailto:islam.balkaya@nokia.com">islam.balkaya@nokia.com</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
     
-    <a href="#" class="back-to-top" id="backToTop">
+    <a href="#" id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
     
     <footer>
-        <div class="footer-content">
-            <p>© 2025 Elif Muslu. All rights reserved.</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/elif-m-a773b2145/" class="social-link" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:elif.muslu97@hotmail.com" class="social-link">
-                    <i class="fas fa-envelope"></i>
-                </a>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 Elif Muslu. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/elif-m-a773b2145/" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:elif.muslu97@hotmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
+        // Sparkle effect
+        const sparkleContainer = document.getElementById('sparkleContainer');
+        const sparkleColors = ['#7000FF', '#8b5cf6', '#ffffff'];
         
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        // Create sparkle elements
+        function createSparkles(num) {
+            for (let i = 0; i < num; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkleContainer.appendChild(sparkle);
+            }
+            return document.querySelectorAll('.sparkle');
+        }
+        
+        // Animate sparkles
+        function animateSparkles(sparkles) {
+            sparkles.forEach(sparkle => {
+                // Reset sparkle
+                sparkle.style.opacity = '0';
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                
+                // Random size
+                const size = Math.random() * 5 + 1;
+                
+                // Random color
+                const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+                
+                // Set styles
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.background = color;
+                sparkle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+                sparkle.style.left = `${posX}px`;
+                sparkle.style.top = `${posY}px`;
+                
+                // Animation timing
+                const delay = Math.random() * 2000;
+                const duration = Math.random() * 3000 + 2000;
+                
+                setTimeout(() => {
+                    sparkle.style.opacity = Math.random() * 0.7 + 0.3;
+                    
+                    setTimeout(() => {
+                        sparkle.style.opacity = '0';
+                    }, duration);
+                    
+                }, delay);
             });
-        });
+        }
         
-        // Back to top button functionality
+        // Initialize sparkles
+        const sparkles = createSparkles(30);
+        
+        // Run sparkle animation periodically
+        function startSparkles() {
+            animateSparkles(sparkles);
+            setInterval(() => {
+                animateSparkles(sparkles);
+            }, 5000);
+        }
+        
+        // Start sparkle animation when page loads
+        window.addEventListener('load', startSparkles);
+        
+        // Navigation active state
+        const navLinks = document.querySelectorAll('.nav-item a');
+        const sections = document.querySelectorAll('section');
+        
+        function setActiveLink() {
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= sectionTop - 200) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', setActiveLink);
+        
+        // Back to top button
         const backToTopButton = document.getElementById('backToTop');
         
-        // Show back to top button when scrolling down
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopButton.classList.add('visible');
@@ -926,26 +1057,28 @@
             }
         });
         
-        // Add navigation highlight for active section
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (window.pageYOffset >= sectionTop - 300) {
-                    current = section.getAttribute('id');
-                }
+        backToTopButton.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
